@@ -1,0 +1,4 @@
+chr1	test	exon	1000	2000	.	+	.	gene_id "geneA"; transcript_id "tA1";
+chr1	test	exon	3000	4000	.	+	.	gene_id "geneA"; transcript_id "tA1";
+chr1	test	exon	5000	6000	.	+	.	gene_id "geneB"; transcript_id "tB1";
+chr1	test	exon	5500	6500	.	+	.	gene_id "geneC"; transcript_id "tC1";
