@@ -12,6 +12,11 @@ description = "Count reads over genomic features (BAM + GFF) — Rust port of fe
 name = "rsomics-featurecounts"
 path = "src/main.rs"
 
+[lib]
+name = "rsomics_featurecounts"
+path = "src/lib.rs"
+doctest = false
+
 [dependencies]
 rsomics-common = { version = "0.6" }
 rsomics-help = { version = "0.3" }
