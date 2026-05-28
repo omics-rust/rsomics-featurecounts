@@ -2,7 +2,6 @@ use criterion::{Criterion, criterion_group, criterion_main};
 use std::hint::black_box;
 use std::path::PathBuf;
 use std::process::Command;
-use tempfile;
 
 fn bench_featurecounts(c: &mut Criterion) {
     let bin = env!("CARGO_BIN_EXE_rsomics-featurecounts");
