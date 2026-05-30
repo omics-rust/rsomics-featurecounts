@@ -18,19 +18,17 @@ pub use count::count_reads;
 pub use gtf::{build_genes, load_exons};
 pub use output::write_output;
 
-/// One GTF exon feature with its owning gene (meta-feature).
 #[derive(Debug, Clone)]
 pub struct Exon {
     pub gene_id: String,
     pub chrom: String,
-    /// 1-based inclusive start (GTF coordinate).
+    /// 1-based inclusive (GTF coordinate).
     pub start: i32,
-    /// 1-based inclusive end (GTF coordinate).
+    /// 1-based inclusive (GTF coordinate).
     pub end: i32,
     pub strand: char,
 }
 
-/// Per-gene annotation aggregated from its exons, in GTF order.
 #[derive(Debug, Clone)]
 pub struct Gene {
     pub gene_id: String,
@@ -38,7 +36,7 @@ pub struct Gene {
 }
 
 impl Gene {
-    /// Sum of exon lengths (end−start+1 each); does not deduplicate overlapping exons.
+    /// Sum of exon lengths; does not deduplicate overlapping exons.
     pub fn length(&self) -> u64 {
         self.exons
             .iter()
@@ -47,16 +45,14 @@ impl Gene {
     }
 }
 
-/// Options controlling read assignment.
 #[derive(Debug, Clone)]
 pub struct CountOpts {
-    /// GFF/GTF feature type column 3 to collect (default "exon").
+    /// GFF/GTF feature type (column 3).
     pub feature_type: String,
-    /// GFF/GTF attribute key for meta-feature grouping (default "gene_id").
+    /// GTF attribute key for meta-feature grouping.
     pub attribute: String,
-    /// Strandedness: 0=unstranded, 1=sense, 2=antisense.
+    /// 0 = unstranded, 1 = sense, 2 = antisense.
     pub strand_specific: u8,
-    /// Minimum mapping quality (default 0 = all reads pass).
     pub min_mapq: u8,
 }
 
@@ -71,7 +67,7 @@ impl Default for CountOpts {
     }
 }
 
-/// Assignment category counts — matches featureCounts .summary column order.
+/// Matches featureCounts .summary column order.
 #[derive(Debug, Default, Clone, Serialize)]
 pub struct CountSummary {
     pub assigned: u64,

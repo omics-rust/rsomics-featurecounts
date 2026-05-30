@@ -9,9 +9,6 @@ use crate::cigar::cigar_ref_blocks_from;
 use crate::index::{ExonIndex, GeneHit};
 use crate::{CountOpts, CountSummary, Exon};
 
-/// Count reads from one BAM file against the exon index.
-///
-/// Returns (gene_id → count, summary).
 pub fn count_reads(
     bam_path: &Path,
     exons: &[Exon],
@@ -42,7 +39,6 @@ pub fn count_reads(
             continue;
         }
 
-        // NH > 1 → multi-mapping read.
         let nh = nh_tag(&record);
         if nh > 1 {
             summary.unassigned_multi_mapping += 1;
@@ -96,7 +92,6 @@ pub fn count_reads(
     Ok((counts, summary))
 }
 
-/// Extract NH tag; returns 1 if absent (treat as uniquely mapped).
 fn nh_tag(record: &bam::Record) -> u32 {
     use noodles::sam::alignment::record::data::field::Tag;
     let data = record.data();
